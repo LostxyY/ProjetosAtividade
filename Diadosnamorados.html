@@ -77,4 +77,57 @@
 
 <div class="painel">
     <h1>Feliz Dia dos Namorados!</h1>
-    <img src="
+    <img src="https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUyN25pcmliNXEwcWk4YzBhaWF3ZnVtMDFsYnI2eG1id3Z6YXcxejFlbSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/U2SzxTpb3YiYigwIs7/200.gif" alt="Ursinhos">
+    <h2>Quer namorar comigo?</h2>
+
+    <div class="botoes">
+        <a href="https://youtu.be/BkpqU3gdjlw" target="_blank">
+            <button id="sim">Sim</button>
+        </a>
+        <button id="nao">Não</button>
+    </div>
+</div>
+
+<script>
+    const botaoNao = document.getElementById("nao");
+    const painel = document.querySelector(".painel");
+
+    function moverBotao(event) {
+        // Evita comportamentos padrão do navegador (como zoom ou abrir menu de contexto)
+        if (event) event.preventDefault();
+
+        // Calcula a área útil do painel para o botão não sair dele
+        const larguraPainel = painel.clientWidth;
+        const alturaPainel = painel.clientHeight;
+
+        // Dimensões do próprio botão
+        const larguraBotao = botaoNao.offsetWidth;
+        const alturaBotao = botaoNao.offsetHeight;
+
+        // Gera posições aleatórias, mas desconta o tamanho do botão para ele não "vazar"
+        const maxX = larguraPainel - larguraBotao;
+        const maxY = alturaPainel - alturaBotao;
+
+        const randomX = Math.floor(Math.random() * maxX);
+        const randomY = Math.floor(Math.random() * maxY);
+
+        // Aplica as novas coordenadas
+        botaoNao.style.left = randomX + "px";
+        botaoNao.style.top = randomY + "px";
+    }
+
+    // Foge quando o mouse chega perto (Computador)
+    botaoNao.addEventListener("mouseover", moverBotao);
+
+    // Foge quando alguém tenta clicar (Computador ou Celular)
+    botaoNao.addEventListener("click", moverBotao);
+
+    // Foge instantaneamente ao toque (Celular)
+    botaoNao.addEventListener("touchstart", function(e) {
+        e.preventDefault(); // Impede que o clique "real" aconteça após o toque
+        moverBotao();
+    });
+</script>
+
+</body>
+</html>
