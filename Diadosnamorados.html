@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Dia dos Namorados </title>
+
+    <style>
+    body {
+        background-color: red;
+    }
+
+    .painel {
+        margin: auto;
+        background-color: white;
+        width: 500px;
+        height: 500px;
+        border-radius: 20px;
+        text-align: center;
+        padding-top: 50px;
+        font-family: Arial;
+
+        position: relative;
+    }
+
+    .botoes {
+        position: absolute;
+        bottom: 30px;
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    #sim, #nao {
+        height: 40px;
+        width: 70px;
+        background-color: red;
+        border: 2px solid white;
+        border-radius: 10px;
+        color: white;
+        cursor: pointer;
+    }
+</style>
+
+<div class="painel">
+    <h1>Feliz Dia dos Namorados!</h1>
+    <img src="https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUyN25pcmliNXEwcWk4YzBhaWF3ZnVtMDFsYnI2eG1id3Z6YXcxejFlbSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/U2SzxTpb3YiYigwIs7/200.gif" alt="">
+    <h2>Quer namorar comigo?</h2>
+
+    <div class="botoes">
+        ,<a href="https://youtu.be/BkpqU3gdjlw" target="_blank">
+        <button id="sim">Sim</button>
+        <button id="nao">Não</button>
+    </div>
+</div>
+
+<script>
+    function fuja() {
+        var botaoNao = document.getElementById("nao");
+        var painel = document.querySelector(".painel");
+
+        // Só vira absolute quando precisa fugir
+        botaoNao.style.position = "absolute";
+
+        var largura = painel.clientWidth;
+        var altura = painel.clientHeight;
+
+        var maxX = largura - botaoNao.offsetWidth;
+        var maxY = altura - botaoNao.offsetHeight;
+
+        var x = Math.floor(Math.random() * maxX);
+        var y = Math.floor(Math.random() * maxY);
+
+        botaoNao.style.left = x + "px";
+        botaoNao.style.top = y + "px";
+    }
+
+    document.getElementById("nao").addEventListener("mouseenter", fuja);
+</script>
+
+</body>
+</html>
