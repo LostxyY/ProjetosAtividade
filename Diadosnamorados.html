@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Dia dos Namorados</title>
+    <style>
+        body {
+            background-color: #ff4d4d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .painel {
+            background-color: white;
+            width: 90%;
+            max-width: 500px;
+            height: 500px;
+            border-radius: 20px;
+            text-align: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            position: relative;
+            box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
+            overflow: hidden; /* Garante que o botão não saia do painel */
+        }
+
+        .botoes {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        #sim, #nao {
+            height: 45px;
+            width: 80px;
+            background-color: red;
+            border: 2px solid white;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+
+        #nao {
+            position: relative; /* Começa relativo, muda para absolute no JS */
+            z-index: 10;
+        }
+
+        img {
+            max-width: 200px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="painel">
+    <h1>Feliz Dia dos Namorados!</h1>
+    <img src="https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUyN25pcmliNXEwcWk4YzBhaWF3ZnVtMDFsYnI2eG1id3Z6YXcxejFlbSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/U2SzxTpb3YiYigwIs7/200.gif" alt="Ursinhos carinhosos">
+    <h2>Quer namorar comigo?</h2>
+
+    <div class="botoes">
+        <a href="https://youtu.be/BkpqU3gdjlw" target="_blank">
+            <button id="sim">Sim</button>
+        </a>
+        <button id="nao">Não</button>
+    </div>
+</div>
+
+<script>
+    const botaoNao = document.getElementById("nao");
+    const painel = document.querySelector(".painel");
+
+    function fuja(event) {
+        // Previne o clique real no celular para ele não selecionar o texto
+        if (event.type === "touchstart") event.preventDefault();
+
+        // Faz o botão se mover dentro do painel
+        botaoNao.style.position = "absolute";
+
+        const larguraPainel = painel.clientWidth;
+        const alturaPainel = painel.clientHeight;
+
+        // Calcula limites para o botão não sumir das bordas
+        const maxX = larguraPainel - botaoNao.offsetWidth;
+        const maxY = alturaPainel - botaoNao.offsetHeight;
+
+        const randomX = Math.floor(Math.random() * maxX);
+        const randomY = Math.floor(Math.random() * maxY);
+
+        botaoNao.style.left = randomX + "px";
+        botaoNao.style.top = randomY + "px";
+    }
+
+    // Evento para computador (passar o mouse)
+    botaoNao.addEventListener("mouseenter", fuja);
+
+    // Evento para celular (clicar/tocar)
+    botaoNao.addEventListener("touchstart", fuja);
+    botaoNao.addEventListener("click", fuja);
+</script>
+
+</body>
+</html>
