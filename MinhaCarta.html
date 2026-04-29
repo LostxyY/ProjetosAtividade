@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Uma Mensagem Especial ❤️</title>
+    <style>
+        /* Centralização do corpo */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #fce4ec; /* Rosa clarinho de fundo */
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Container do Envelope */
+        .envelope-wrapper {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            cursor: pointer;
+        }
+
+        .envelope {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: #f06292; /* Cor do envelope */
+            z-index: 3;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        /* Aba do envelope (parte de cima) */
+        .envelope::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            z-index: 5;
+            border-top: 110px solid #ec407a;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            transform-origin: top;
+            transition: transform 0.4s ease;
+        }
+
+        /* Lados do envelope */
+        .envelope::after {
+            content: "";
+            position: absolute;
+            z-index: 4;
+            border-top: 100px solid transparent;
+            border-right: 150px solid #f06292;
+            border-bottom: 100px solid #f06292;
+            border-left: 150px solid #f06292;
+            border-radius: 5px;
+        }
+
+        /* A CARTA (Onde está o seu texto) */
+        .letter {
+            position: absolute;
+            bottom: 5px;
+            left: 10px;
+            width: 280px;
+            height: 180px;
+            background-color: white;
+            z-index: 2;
+            transition: transform 0.5s ease;
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            overflow-y: auto; /* Permite scroll se o texto for grande */
+        }
+
+        .text-title {
+            font-weight: bold;
+            color: #d81b60;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .text-body {
+            font-size: 12px;
+            line-height: 1.4;
+            color: #333;
+            white-space: pre-line; /* Respeita as quebras de linha */
+        }
+
+        /* Coração */
+        .heart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 30px;
+            height: 30px;
+            background-color: #d81b60;
+            transform: translate(-50%, -20%) rotate(45deg);
+            z-index: 6;
+            transition: transform 0.4s ease;
+        }
+
+        .heart::before, .heart::after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #d81b60;
+            border-radius: 50%;
+        }
+        .heart::before { top: -15px; left: 0; }
+        .heart::after { left: -15px; top: 0; }
+
+        /* ANIMAÇÃO DE ABRIR */
+        .envelope-wrapper.open .envelope::before {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .envelope-wrapper.open .letter {
+            transform: translateY(-130px); /* Faz a carta subir */
+            height: 250px; /* Aumenta o tamanho dela ao sair */
+            z-index: 4;
+        }
+
+        .envelope-wrapper.open .heart {
+            transform: translate(-50%, -150px) rotate(45deg) scale(0.5);
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="envelope-wrapper" onclick="this.classList.toggle('open')">
+        <div class="envelope"></div>
+        <div class="letter">
+            <div class="text-title">Para a Minha Princesa... ❤️</div>
+            <div class="text-body">
+                Ei linda, sei que o dia hoje não tá fácil, mas só queria te lembrar que eu tô aqui com você pra qualquer coisa. Independente do que aconteça ou de como você esteja se sentindo, eu não vou a lugar nenhum.
+
+                E ó, pode parecer bobagem, mas eu gosto 100% do seu jeito. De verdade. Não precisa mudar nada, nem tentar parecer forte o tempo todo. Eu curto cada detalhe seu exatamente assim, do jeitinho que você é.
+
+                Se o dia pesar demais, pode contar comigo pra dividir o peso ou só pra te fazer companhia. Tô aqui por você, sempre minha GATAAA. ❤️
+            </div>
+        </div>
+        <div class="heart"></div>
+    </div>
+
+</body>
+</html>
